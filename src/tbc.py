@@ -15,6 +15,10 @@ def main(argv):
     actual_audio = get_meme_audio(before_len, tbc_duration)
 
     clip_to_tbc = mp.VideoFileClip(file_to_tbc)
+    clip_to_tbc_audio = mp.AudioFileClip(file_to_tbc)
+
+    actual_audio = mp.CompositeAudioClip([actual_audio.volumex(1.2), clip_to_tbc_audio.volumex(0.6)])
+
     if before_len >= 60:
         raise Exception
     if before_len >= 10:
@@ -48,7 +52,7 @@ def main(argv):
     final_clip =  mp.concatenate_videoclips([ clip_before, painting_fading.set_duration(tbc_duration)])
     afinal_clip = final_clip.set_audio(actual_audio)
     print("h{} w{}".format(afinal_clip.h, afinal_clip.w))
-    afinal_clip.write_videofile('out.webm', bitrate="50000k")
+    afinal_clip.write_videofile('out.webm', bitrate="38000k")
 
 def parse_args(args):
     tbc_duration = float(args[0])
