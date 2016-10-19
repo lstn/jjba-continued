@@ -23,6 +23,6 @@ def main():
     tbc_clip = tbc_clip.resize(_resize)
     print("after resize: h{} w{}".format(tbc_clip.h, tbc_clip.w))
 
-    tbc.save_clip(tbc_clip, "38000k")
+    tbc.save_clip(tbc_clip, args.bitrate)
 
 if __name__ == "__main__": main()

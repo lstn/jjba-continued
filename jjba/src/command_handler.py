@@ -9,19 +9,20 @@ def __create_arguments(parser):
     
     def add_simple_args():
         parser.add_argument('-d', required=False, metavar='tbc_duration', type=float)
+        parser.add_argument('-b', required=False, metavar='bitrate')
     
     def add_other_args():
         def add_sizing_group():
             sizing_group = parser.add_mutually_exclusive_group()
-            sizing_group.add_argument('--scale', required=False, metavar='final_size_scale', type=float)
-            sizing_group.add_argument('--res', nargs=2, required=False, metavar='final_resolution', type=int)
-            sizing_group.add_argument('--height', required=False, metavar='final_height', type=int)
-            sizing_group.add_argument('--width', required=False, metavar='final_width', type=int)
+            sizing_group.add_argument('--scale', required=False, type=float)
+            sizing_group.add_argument('--res', nargs=2, required=False, type=int)
+            sizing_group.add_argument('--height', required=False, type=int)
+            sizing_group.add_argument('--width', required=False, type=int)
         
         def add_clipping_group():
-            parser.add_argument('--start-time', required=False, metavar='start_time', type=float)
-            parser.add_argument('--end-time', required=False, metavar='end_time', type=float)
-            parser.add_argument('--end-original-audio', required=False, metavar='end_original_audio', type=float)
+            parser.add_argument('--start-time', required=False, type=float)
+            parser.add_argument('--end-time', required=False, type=float)
+            parser.add_argument('--end-original-audio', required=False, type=float)
         
         add_sizing_group()
         add_clipping_group()
@@ -49,6 +50,7 @@ def __args_to_bunch(args):
         'freeze_time': an('freeze_time', 1.0),
 
         'tbc_duration': an('d', 5.4),
+        'bitrate': an('b', "38000k"),
 
         'final_size_scale': an('scale', None),
         'final_resolution': an('res', None),
