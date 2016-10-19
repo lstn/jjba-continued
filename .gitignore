@@ -89,3 +89,6 @@ ENV/
 .ropeproject
 
 *.webm
+*.mp4
+*.gif
+jjba/output/
